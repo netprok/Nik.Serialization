@@ -1,6 +1,4 @@
-﻿using Nik.Serialization;
-
-namespace Nik.Serialization;
+﻿namespace Nik.Serialization;
 
 public sealed class CsvSerializer : ICsvSerializer
 {

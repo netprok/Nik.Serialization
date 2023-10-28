@@ -1,4 +1,4 @@
-﻿namespace Nik.Serialization.Abstractions;
+﻿namespace Nik.Serialization.Models;
 
 public sealed class CsvSerializeOptions
 {
