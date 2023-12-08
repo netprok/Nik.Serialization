@@ -126,9 +126,16 @@ public sealed class CsvSerializer : ICsvSerializer
             {
                 value = default;
             }
-            else if (linkedProperty.GetType().IsEnum)
+            else if (linkedProperty.Property?.PropertyType.IsEnum ?? false)
             {
-                value = Enum.ToObject(linkedProperty.GetType(), Convert.ToInt32(stringValue));
+                if (Enum.TryParse(linkedProperty.Property.PropertyType, stringValue, out var enumValue))
+                {
+                    value = enumValue;
+                }
+                else
+                {
+                    value = Enum.ToObject(linkedProperty.Property.PropertyType, Convert.ToInt32(stringValue));
+                }
             }
             else
             {
