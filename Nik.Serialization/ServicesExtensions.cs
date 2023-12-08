@@ -2,7 +2,7 @@
 
 public static class ServicesExtensions
 {
-    public static IServiceCollection UseSerializers(this IServiceCollection services)
+    public static IServiceCollection UseSerialization(this IServiceCollection services)
     {
         services.AddSingleton<ICsvSerializer, CsvSerializer>();
         services.AddSingleton<IJsonSerializer, NewtonsoftJsonSerializer>();

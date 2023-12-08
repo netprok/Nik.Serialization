@@ -2,6 +2,6 @@ Install-Package NuGet.CommandLine
 
 dotnet pack -c Release
 
-nuget add '.\Nik.Serialization\bin\Release\Nik.Serialization.1.1.1.nupkg' -source 'D:\OneDrive\Software Development\nik-nuget-package-source'
+nuget add '.\Nik.Serialization\bin\Release\Nik.Serialization.1.1.2.nupkg' -source 'D:\OneDrive\Software Development\nik-nuget-package-source'
 nuget add '.\Nik.Serialization.Abstractions\bin\Release\Nik.Serialization.Abstractions.1.1.0.nupkg' -source 'D:\OneDrive\Software Development\nik-nuget-package-source'
 nuget add '.\Nik.Serialization.Models\bin\Release\Nik.Serialization.Models.1.1.0.nupkg' -source 'D:\OneDrive\Software Development\nik-nuget-package-source'

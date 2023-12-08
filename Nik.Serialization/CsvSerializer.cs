@@ -120,10 +120,21 @@ public sealed class CsvSerializer : ICsvSerializer
         var data = new T();
         foreach (var linkedProperty in linkedProperties)
         {
+            object? value;
             string stringValue = csvFields[linkedProperty.CsvIndex];
-            var value = string.IsNullOrEmpty(stringValue) ?
-                default :
-                Convert.ChangeType(stringValue, linkedProperty.Property!.PropertyType, CultureInfo.InvariantCulture);
+            if (string.IsNullOrEmpty(stringValue))
+            {
+                value = default;
+            }
+            else if (linkedProperty.GetType().IsEnum)
+            {
+                value = Enum.ToObject(linkedProperty.GetType(), Convert.ToInt32(stringValue));
+            }
+            else
+            {
+                value = Convert.ChangeType(stringValue, linkedProperty.Property!.PropertyType, CultureInfo.InvariantCulture);
+            }
+
             linkedProperty.Property!.SetValue(data, value);
         }
 
