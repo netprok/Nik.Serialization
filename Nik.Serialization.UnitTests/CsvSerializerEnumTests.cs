@@ -1,10 +1,6 @@
-using FluentAssertions;
-
-using Nik.Serialization.Models;
-
 namespace Nik.Serialization.UnitTests;
 
-public sealed class CsvSerializerTests
+public sealed class CsvSerializerEnumTests
 {
     [Fact]
     public void TestEnumCsvDeserialize()
