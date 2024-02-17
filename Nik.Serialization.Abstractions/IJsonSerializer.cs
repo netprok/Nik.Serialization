@@ -11,7 +11,7 @@ public interface IJsonSerializer
     /// <typeparam name="T"></typeparam>
     /// <param name="json"></param>
     /// <returns></returns>
-    T Deserialize<T>(string json) where T : class, new();
+    T? Deserialize<T>(string json) where T : class, new();
 
     /// <summary>
     /// Serializes an object to a json string.

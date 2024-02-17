@@ -5,15 +5,19 @@
 /// </summary>
 public sealed class NewtonsoftJsonSerializer : IJsonSerializer
 {
-    public T Deserialize<T>(string json) where T : class, new()
+    public T? Deserialize<T>(string json) where T : class, new()
     {
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            return null;
+        }
+
         return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(
             json,
             new Newtonsoft.Json.JsonSerializerSettings
             {
                 ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
-            })
-            ?? new();
+            });
     }
 
     public string Serialize(object value, bool forceCamelCase) =>

@@ -4,7 +4,7 @@ public sealed class CsvSerializer : ICsvSerializer
 {
     private static readonly string NullValue = new Guid().ToString("N");
 
-    public string Serialize<T>(IEnumerable<T> values, CsvSerializeOptions options) where T : class, new()
+    public string Serialize<T>(IEnumerable<T?> values, CsvSerializeOptions options) where T : class, new()
     {
         var linkedProperties = GetLinkedProperties<T>().ToList();
         var result = string.Empty;
@@ -33,7 +33,7 @@ public sealed class CsvSerializer : ICsvSerializer
         }
     }
 
-    public IEnumerable<T> Deserialize<T>(IEnumerable<string> csvLines, CsvSerializeOptions options, bool checkFieldsCount) where T : class, new()
+    public IEnumerable<T?> Deserialize<T>(IEnumerable<string> csvLines, CsvSerializeOptions options, bool checkFieldsCount) where T : class, new()
     {
         var lines = GetValidLines(csvLines);
         if (!lines.Any())
@@ -104,7 +104,7 @@ public sealed class CsvSerializer : ICsvSerializer
         }
     }
 
-    private static T GetValue<T>(string line, List<PropertyFieldLink> linkedProperties, CsvSerializeOptions options, bool checkFieldsCount, bool hasRedundantSeparator) where T : class, new()
+    private static T? GetValue<T>(string line, List<PropertyFieldLink> linkedProperties, CsvSerializeOptions options, bool checkFieldsCount, bool hasRedundantSeparator) where T : class, new()
     {
         if (hasRedundantSeparator)
         {
